@@ -4,8 +4,16 @@ var mapa = new L.map('map',{
     zoom:6
 });
 
+var BING_KEY = 'AuhiCJHlGzhg93IqUH_oCpl_-ZUrIE6SPftlyGYUvr9Amx5nzA-WqGcPquyFZl4L'
+
 var layerOSM = new L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png');
 var layerRelieve = new L.tileLayer('http://tile.stamen.com/terrain/{z}/{x}/{y}.jpg');
+var layerGoogle = new L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+    maxZoom: 20,
+    subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    });
+
+var layerBing = new L.tileLayer.bing(BING_KEY);
 
 var mapControlsContainer = document.getElementsByClassName("leaflet-control")[0];
 var logoContainer = document.getElementById("logoContainer");
@@ -108,7 +116,8 @@ layerOSM.addTo(mapa);
 var capasBase = {
     "Relieve": layerRelieve,
     "OSM": layerOSM,
-    
+    "Google Maps": layerGoogle,
+    "Bing Maps": layerBing,
 };
 
 var overlayMaps={
